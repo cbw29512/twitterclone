@@ -1,0 +1,6 @@
+<h1> Profile </h>
+
+{% for tweet in user_tweet %}
+<p>{{tweet.date}} | {{tweet.author}} | {{tweet.tweet}}
+
+<a href = {% url 'home'%}> <button>Back Home!</button></a>

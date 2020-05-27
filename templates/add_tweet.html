@@ -1,0 +1,7 @@
+<h1> Add Tweet </h>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">TWEET TWEET!</button>
+</form>
+<a href = {% url 'home'%}> <button>Back Home!</button></a>
