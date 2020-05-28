@@ -1,7 +1,13 @@
 <h1> Profile </h1>
-
+Logged In: {{ user.username }}
 {% for tweet in user_tweets %}
 <p>{{tweet.date}} | {{tweet.author}} | {{tweet.tweet}}
 {% endfor %}
-
+<p>Followers: {{ followers_count }}</p>
+<p>Total Tweets: {{ tweet_count }}</p>
+{% if is_following %}
+<p><a href = {% url 'unfollow' id=twitteruser.id %}> <button>UnFollow</button></a><p>
+{% else %}
+<p><a href = {% url 'follow' id=twitteruser.id %}> <button>Follow</button></a></p>
+{% endif %}
 <p><a href = {% url 'home'%}> <button>Back Home!</button></a></p>
