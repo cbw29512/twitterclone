@@ -17,3 +17,7 @@ def add_tweet(request, user_id):
             )
             return HttpResponseRedirect(reverse('home'))
     return render(request, "add_tweet.html", {"form": form})
+
+def tweetView(request, tweet_id):
+    tweet = Tweet.objects.get(id=tweet_id)
+    return render(request, 'tweet.html', {'tweet': tweet})

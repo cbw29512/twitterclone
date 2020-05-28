@@ -1,6 +1,7 @@
-<h1> Profile </h>
+<h1> Profile </h1>
 
-{% for tweet in user_tweet %}
+{% for tweet in user_tweets %}
 <p>{{tweet.date}} | {{tweet.author}} | {{tweet.tweet}}
+{% endfor %}
 
-<a href = {% url 'home'%}> <button>Back Home!</button></a>
+<p><a href = {% url 'home'%}> <button>Back Home!</button></a></p>
