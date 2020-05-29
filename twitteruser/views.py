@@ -19,8 +19,9 @@ def profileView(request, user_id):
     twitteruser = TwitterUser.objects.get(id=user_id)
     following_list = twitteruser.following.all()
     following_count = following_list.count()
+    current_user_following_list = request.user.following.all()
     tweet_count = user_tweets.count()
-    if twitteruser in following_list:
+    if twitteruser in current_user_following_list:
         is_following = True
     else:
         is_following = False
@@ -32,6 +33,7 @@ def profileView(request, user_id):
             'is_following': is_following,
             'following_count': following_count,
             'tweet_count': tweet_count,
+            'current_user_following_list': current_user_following_list,
             })    
 
 
