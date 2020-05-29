@@ -19,22 +19,31 @@ def profileView(request, user_id):
     twitteruser = TwitterUser.objects.get(id=user_id)
     following_list = twitteruser.following.all()
     following_count = following_list.count()
-    current_user_following_list = request.user.following.all()
     tweet_count = user_tweets.count()
-    if twitteruser in current_user_following_list:
-        is_following = True
-    else:
-        is_following = False
+    if request.user.is_authenticated:
+        current_user_following_list = request.user.following.all()
+        if twitteruser in current_user_following_list:
+            is_following = True
+        else:
+            is_following = False
+        return render(
+                request, 
+                'profile.html', {
+                'user_tweets': user_tweets, 
+                'twitteruser': twitteruser, 
+                'is_following': is_following,
+                'following_count': following_count,
+                'tweet_count': tweet_count,
+                'current_user_following_list': current_user_following_list,
+                })    
     return render(
-            request, 
-            'profile.html', {
-            'user_tweets': user_tweets, 
-            'twitteruser': twitteruser, 
-            'is_following': is_following,
-            'following_count': following_count,
-            'tweet_count': tweet_count,
-            'current_user_following_list': current_user_following_list,
-            })    
+                request, 
+                'profile.html', {
+                'user_tweets': user_tweets, 
+                'twitteruser': twitteruser,
+                'following_count': following_count,
+                'tweet_count': tweet_count,
+                })     
 
 
 #https://stackoverflow.com/questions/6218175/how-to-implement-followers-following-in-django
