@@ -1,5 +1,5 @@
 <h1> Tweet </h1>
-<h2><a href = {%url 'profile' user_id = tweet.author %}>{{tweet.author}}</a>
+<h2><a href = {%url 'profile' user_id=tweet.author.id %}>{{tweet.author}}</a>
 <h3>{{tweet.data}}</h3>
 <p>{{tweet.tweet}}</p>
 
