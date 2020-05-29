@@ -20,10 +20,12 @@ def add_tweet(request, user_id):
                 tweet = data['tweet'],
                 author = user,
             )
-            find_users = re.findall(r'@([\w\-])', data['tweet'])
-            for find_users in set(all_user):
+            find_users = re.findall(r'@(\w+)', data['tweet'])
+            #Derek Barnes and Matthem Perry assisted
+            # for find_users in set(all_user):
+            for tagged in find_users:
                 Notification.objects.create(
-                    notify_user = TwitterUser.objects.get(username=find_users),
+                    notify_user = TwitterUser.objects.get(username=tagged),
                     tweet = tweet,
                 )
             return HttpResponseRedirect(reverse('home'))
