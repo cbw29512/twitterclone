@@ -7,6 +7,9 @@ from twitteruser.models import TwitterUser
 
 
 def notification_view(request):
-    current_user = request.user
-    notifications = Notification.objects.get(notify_user=current_user, unread_notifications=True)
-    return render(request, 'notifications.html', {'notifications': notifications, 'notification_count': notification_count})
+    notified_user = request.user
+    notifications = Notification.objects.filter(notify_user=notified_user, unread_notify = False)
+    for notification in notifications:
+        notification.unread_notify = True
+        notification.save()
+    return render(request, 'notification.html', {'notifications': notifications, 'notified_user': notified_user})

@@ -1,0 +1,7 @@
+<h1> Notification </h1>
+
+{% for notif in notifications %}
+{{notif.tweets}}
+{% endfor %}
+
+<a href = {% url 'home'%}> <button>Back Home!</button></a>

@@ -6,5 +6,4 @@ urlpatterns = [
     path('profile/<int:user_id>', views.profileView, name='profile'),
     path('follow_user/<int:id>', views.follow_user, name='follow'),
     path('unfollow_user/<int:id>', views.unfollow_user, name='unfollow'),
-    path('notification/<str:id>', views.notification, name='notification'),
 ]
