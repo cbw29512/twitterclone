@@ -42,6 +42,7 @@ def loginView(request):
     return render(request, html, {'form': form})
 
 
+@login_required
 def logoutView(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))

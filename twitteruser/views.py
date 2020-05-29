@@ -39,6 +39,7 @@ def profileView(request, user_id):
 # Assistance from Peter Marsh 
 
 
+@login_required
 def follow_user(request, id):
     current_user = request.user
     follow_user = TwitterUser.objects.get(id=id)
@@ -47,6 +48,7 @@ def follow_user(request, id):
     return HttpResponseRedirect(reverse('profile', kwargs={'user_id': id})) 
 
 
+@login_required
 def unfollow_user(request, id):
     current_user = request.user
     follow_user = TwitterUser.objects.get(id=id)

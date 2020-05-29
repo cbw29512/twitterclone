@@ -3,9 +3,11 @@ from tweet.models import Tweet
 from tweet.forms import AddTweet
 from twitteruser.models import TwitterUser
 from notification.models import Notification
+from django.contrib.auth.decorators import login_required
 import re
 
 
+@login_required
 def add_tweet(request, user_id):
     form = AddTweet()
     if request.method == 'POST':
@@ -26,6 +28,7 @@ def add_tweet(request, user_id):
                 )
             return HttpResponseRedirect(reverse('home'))
     return render(request, "add_tweet.html", {"form": form})
+
 
 def tweetView(request, tweet_id):
     tweet = Tweet.objects.get(id=tweet_id)
