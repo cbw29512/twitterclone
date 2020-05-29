@@ -11,6 +11,6 @@ class Notification(models.Model):
     unread_notify = models.BooleanField(default=False)
     tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
 
-def __str__(self):
-    return self.tweet.tweet
+    def __str__(self):
+        return self.tweet.tweet
   

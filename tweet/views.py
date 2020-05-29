@@ -20,7 +20,7 @@ def add_tweet(request, user_id):
                 tweet = data['tweet'],
                 author = user,
             )
-            find_user = re.findall(r'@([\w\-)', data['tweet'])
+            find_users = re.findall(r'@([\w\-])', data['tweet'])
             for find_users in set(all_user):
                 Notification.objects.create(
                     notify_user = TwitterUser.objects.get(username=find_users),

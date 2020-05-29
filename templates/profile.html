@@ -3,7 +3,7 @@ Logged In: {{ user.username }}
 {% for tweet in user_tweets %}
 <p>{{tweet.date}} | {{tweet.author}} | {{tweet.tweet}}
 {% endfor %}
-<p>Followers: {{ followers_count }}</p>
+<p>Followers: {{ following_count }}</p>
 <p>Total Tweets: {{ tweet_count }}</p>
 {% if is_following %}
 <p><a href = {% url 'unfollow' id=twitteruser.id %}> <button>UnFollow</button></a><p>
