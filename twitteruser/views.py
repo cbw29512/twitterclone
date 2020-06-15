@@ -3,15 +3,26 @@ from authentication.forms import SignUpForm, LoginForm
 from twitteruser.models import TwitterUser
 from django.contrib.auth.decorators import login_required
 from tweet.models import Tweet
+from django.views.generic import View
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 
-@login_required
-def index(request):
-    html = 'index.html'
-    user_data = TwitterUser.objects.all()
-    tweet_data = Tweet.objects.all()
-    return render(request, html, {'tweet_data': tweet_data, "user_data": user_data})
+# @login_required
+# def index(request):
+#     html = 'index.html'
+#     user_data = TwitterUser.objects.all()
+#     tweet_data = Tweet.objects.all()
+#     return render(request, html, {'tweet_data': tweet_data, "user_data": user_data})
+
+
+class IndexView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        html = 'index.html'
+        user_data = TwitterUser.objects.all()
+        tweet_data = Tweet.objects.all().order_by()
+        return render(request, html, {'tweet_data': tweet_data, "user_data": user_data})
 
 
 def profileView(request, user_id):
@@ -67,3 +78,5 @@ def unfollow_user(request, id):
     current_user.following.remove(follow_user)
     current_user.save()
     return HttpResponseRedirect(reverse('profile', kwargs={'user_id': id}))
+
+
