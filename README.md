@@ -1,4 +1,9 @@
 Author Chris Wilson  Assisted: Sean and Koren
+verison 2: user specific tweets by url no loging fixed
+After writing a tweet for all accounts for user fixed
+every tweet link direct to specific tweet fixed
+user notifications work properly
+
 Now that we've started really putting together real applications with Django, it's time to step up basically everything.
 
 One of the most important things about web development (that I'm sure you've already figured out, but I'll reiterate here) is that once you learn the building blocks of what makes a website, you just repeat those blocks to build larger and larger sites. What we're going to do is take the building blocks from the recipe application and turn them into something much larger and greater.
