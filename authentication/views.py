@@ -3,26 +3,25 @@ from django.contrib.auth import login, logout, authenticate
 from authentication.forms import SignUpForm, LoginForm
 from twitteruser.models import TwitterUser
 from django.contrib.auth.decorators import login_required
+from django.views.generic import View
 # Create your views here.
 
 
-def signupView(request):
-    html = 'signup.html'
-    form = SignUpForm()
-    if request.method == 'POST':
+class SignUpView(View):
+    def get(self, request):
+        form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
+    def post(self, request):
         form = SignUpForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data
-        new_user = TwitterUser.objects.create_user(
-            username=data['username'],
-            password=data['password1'],
-            )
-        new_user.save()
-        login(request, new_user)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_user = TwitterUser.objects.create_user(
+                username=data['username'],
+                password=data['password1'],
+                )
+            new_user.save()
+            login(request, new_user)
         return HttpResponseRedirect(reverse('home'))
-    form = SignUpForm()
-    return render(request, html, {'form': form})
-
 
 def loginView(request):
     html = 'login.html'
